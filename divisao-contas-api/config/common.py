@@ -15,6 +15,8 @@ class Common(Configuration):
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
+        #cors
+        'corsheaders',
 
 
         # Third party apps
@@ -31,11 +33,13 @@ class Common(Configuration):
     MIDDLEWARE = (
         'django.middleware.security.SecurityMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
-        'django.middleware.common.CommonMiddleware',
         'django.middleware.csrf.CsrfViewMiddleware',
         'django.contrib.auth.middleware.AuthenticationMiddleware',
         'django.contrib.messages.middleware.MessageMiddleware',
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
+        'corsheaders.middleware.CorsMiddleware',
+        'corsheaders.middleware.CorsPostCsrfMiddleware',
+        'django.middleware.common.CommonMiddleware',
     )
 
     ALLOWED_HOSTS = ["*"]
@@ -68,6 +72,15 @@ class Common(Configuration):
     USE_L10N = True
     USE_TZ = True
     LOGIN_REDIRECT_URL = '/'
+    CORS_ORIGIN_ALLOW_ALL = True
+    CORS_ALLOW_METHODS = [
+        'DELETE',
+        'GET',
+        'OPTIONS',
+        'PATCH',
+        'POST',
+        'PUT',
+    ]
 
     # Static files (CSS, JavaScript, Images)
     # https://docs.djangoproject.com/en/2.0/howto/static-files/
